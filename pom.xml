@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.papoose.bootstrap</groupId>
+    <artifactId>papoose-root</artifactId>
+    <name>Papoose</name>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <description>Papoose bootstrap parent</description>
+    <url>http://osgi.sourceforge.net</url>
+
+
+    <issueManagement>
+        <system>sourceforge</system>
+        <url>http://sourceforge.net/tracker/?group_id=182181</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>continuum</system>
+        <notifiers>
+            <notifier>
+                <type>mail</type>
+                <sendOnError/>
+                <sendOnFailure/>
+                <address>osgi-developer@lists.sourceforge.net</address>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+
+    <repositories>
+
+        <repository>
+            <id>papoose-dist-m2</id>
+            <name>Papoose Repository</name>
+            <url>http://osgi.sourceforge.com/dist-m2</url>
+        </repository>
+
+        <repository>
+            <id>papoose-dist-m2-snapshot</id>
+            <name>Papoose SNAPSHOT Repository</name>
+            <url>http://osgi.sourceforge.net/dist-m2-snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>apache-dist-m2-snapshot</id>
+            <name>Apache Softwre Foundation Snapshot Repository</name>
+            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+
+    </repositories>
+
+    <modules>
+        <module>version-maven-plugin</module>
+    </modules>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-2</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement>
+            <plugins>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.5</source>
+                        <target>1.5</target>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <configuration>
+                        <archive>
+                            <manifestEntries>
+                                <Papoose-UserDir>${user.dir}</Papoose-UserDir>
+                                <Papoose-GroupId>${project.groupId}</Papoose-GroupId>
+                                <Papoose-ArtifactId>${project.artifactId}</Papoose-ArtifactId>
+                                <Papoose-Version>${project.version}</Papoose-Version>
+                                <Papoose-Packaging>${project.packaging}</Papoose-Packaging>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.0.1</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven</groupId>
+                            <artifactId>maven-archiver</artifactId>
+                            <!--
+                                FIXME: 2.1 is broken... won't allow custom manifestEntires, need to use
+                                this snap until new maven war plugin is released.
+                            -->
+                            <version>2.2</version>
+                        </dependency>
+                    </dependencies>
+                    <configuration>
+                        <archive>
+                            <manifestEntries>
+                                <Papoose-UserDir>${user.dir}</Papoose-UserDir>
+                                <Papoose-GroupId>${project.groupId}</Papoose-GroupId>
+                                <Papoose-ArtifactId>${project.artifactId}</Papoose-ArtifactId>
+                                <Papoose-Version>${project.version}</Papoose-Version>
+                                <Papoose-Packaging>${project.packaging}</Papoose-Packaging>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+    <distributionManagement>
+
+        <repository>
+            <id>papoose-dist-m2</id>
+            <name>Papoose Central Repository</name>
+            <url>scpexe://shell.sourceforge.net/home/groups/o/os/osgi/htdocs/dist-m2</url>
+        </repository>
+
+        <snapshotRepository>
+            <id>papoose-dist-m2-snapshot</id>
+            <name>Papoose Central Development Repository</name>
+            <url>scpexe://shell.sourceforge.net/home/groups/o/os/osgi/htdocs/dist-m2-snapshot</url>
+        </snapshotRepository>
+
+    </distributionManagement>
+
+</project>
