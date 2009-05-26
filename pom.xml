@@ -12,69 +12,41 @@
 
 
     <issueManagement>
-        <system>sourceforge</system>
-        <url>http://sourceforge.net/tracker/?group_id=182181</url>
+        <system>papoose-r4</system>
+        <url>http://www.papoose-r4.org/support/browse/PLUGINS</url>
     </issueManagement>
 
-    <ciManagement>
-        <system>continuum</system>
-        <notifiers>
-            <notifier>
-                <type>mail</type>
-                <sendOnError/>
-                <sendOnFailure/>
-                <address>osgi-developer@lists.sourceforge.net</address>
-            </notifier>
-        </notifiers>
-    </ciManagement>
-
     <repositories>
-
         <repository>
-            <id>papoose-dist-m2</id>
-            <name>Papoose Repository</name>
-            <url>http://osgi.sourceforge.com/dist-m2</url>
-        </repository>
-
-        <repository>
-            <id>papoose-dist-m2-snapshot</id>
-            <name>Papoose SNAPSHOT Repository</name>
-            <url>http://osgi.sourceforge.net/dist-m2-snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>papoose-dist-m2-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/papoose-snapshots/</url>
             <releases>
-                <enabled>false</enabled>
+              <enabled>false</enabled>
             </releases>
-        </repository>
-
-        <repository>
-            <id>apache-dist-m2-snapshot</id>
-            <name>Apache Softwre Foundation Snapshot Repository</name>
-            <url>http://people.apache.org/repo/m2-snapshot-repository</url>
             <snapshots>
-                <enabled>true</enabled>
+              <enabled>true</enabled>
             </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
         </repository>
-
     </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>papoose-dist-m2-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/papoose-snapshots/</url>
+            <releases>
+              <enabled>false</enabled>
+            </releases>
+            <snapshots>
+              <enabled>true</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
 
     <modules>
         <module>version-maven-plugin</module>
     </modules>
 
     <build>
-        <extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-webdav</artifactId>
-                <version>1.0-beta-2</version>
-            </extension>
-        </extensions>
-
         <pluginManagement>
             <plugins>
 
@@ -137,19 +109,16 @@
     </build>
 
     <distributionManagement>
-
         <repository>
             <id>papoose-dist-m2</id>
-            <name>Papoose Central Repository</name>
-            <url>scpexe://shell.sourceforge.net/home/groups/o/os/osgi/htdocs/dist-m2</url>
+            <name>Papoose Release Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/papoose-releases</url>
         </repository>
-
         <snapshotRepository>
-            <id>papoose-dist-m2-snapshot</id>
-            <name>Papoose Central Development Repository</name>
-            <url>scpexe://shell.sourceforge.net/home/groups/o/os/osgi/htdocs/dist-m2-snapshot</url>
+            <id>papoose-dist-m2-snapshots</id>
+            <name>Papoose Development Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/papoose-snapshots</url>
         </snapshotRepository>
-
     </distributionManagement>
 
 </project>
