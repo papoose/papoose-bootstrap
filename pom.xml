@@ -53,51 +53,48 @@
     </modules>
 
     <build>
-        <pluginManagement>
-            <plugins>
+        <plugins>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.5</source>
-                        <target>1.5</target>
-                    </configuration>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <configuration>
-                        <archive>
-                            <manifestEntries>
-                                <Papoose-UserDir>${user.dir}</Papoose-UserDir>
-                                <Papoose-GroupId>${project.groupId}</Papoose-GroupId>
-                                <Papoose-ArtifactId>${project.artifactId}</Papoose-ArtifactId>
-                                <Papoose-Version>${project.version}</Papoose-Version>
-                                <Papoose-Packaging>${project.packaging}</Papoose-Packaging>
-                            </manifestEntries>
-                        </archive>
-                    </configuration>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Papoose-UserDir>${user.dir}</Papoose-UserDir>
+                            <Papoose-GroupId>${project.groupId}</Papoose-GroupId>
+                            <Papoose-ArtifactId>${project.artifactId}</Papoose-ArtifactId>
+                            <Papoose-Version>${project.version}</Papoose-Version>
+                            <Papoose-Packaging>${project.packaging}</Papoose-Packaging>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-gpg-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
-            </plugins>
-        </pluginManagement>
-
+        </plugins>
     </build>
 
     <distributionManagement>
